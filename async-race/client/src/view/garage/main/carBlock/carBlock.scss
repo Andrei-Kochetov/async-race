@@ -1,0 +1,41 @@
+.car-block{
+    margin: 5px 0;
+}
+.road-car-block{
+    width: 100%;
+    border-top: 3px dashed silver;
+}
+.car-img{
+    display: flex;
+    align-items: flex-end;
+    width: 100px;
+}
+
+.high-section-car-block{
+    display: flex;
+    margin-bottom: 10px;
+   
+}
+.middle-car-block{
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+}
+.button-wrapper{
+    display: flex;
+    align-items: flex-start;
+}
+
+.left-wrapper-car-block{
+    display: flex;
+    column-gap: 5px;
+}
+
+.right-wrapper-car-block{
+    display: flex;
+    align-items: flex-end;
+}
+
+.car-name{
+    margin-left: 10px;
+}

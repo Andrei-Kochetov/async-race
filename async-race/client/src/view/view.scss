@@ -1,0 +1,15 @@
+.container{
+    background-color: rgba($color: #919191, $alpha: 0.5);
+    margin: auto;
+    padding-top: 20px;
+    max-width: 1140px;
+}
+.content{
+    margin-top: 20px;
+    min-height: 100px;
+    background-color: rgba($color: #ff9898, $alpha: 0.5);
+}
+
+.hide{
+    display: none;
+}

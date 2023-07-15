@@ -1,0 +1,24 @@
+.car-block-board{
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+.car-name{
+    margin: 0;
+}
+.car-board-img{
+    width: 63px;
+    height: 39px;
+}
+.car-name-board{
+    width: 80px;
+    font-size: 14px;
+}
+.car-win-board{
+    width: 62px;
+    font-size: 14px;
+}
+.car-best-time-board{
+    width: 20px;
+    font-size: 14px;
+}

@@ -1,0 +1,31 @@
+.titles-board{
+    display: inline-flex;
+    column-gap: 40px;
+    height: 30px;
+    align-items: center;
+
+    background-color: blue;
+    color: white;
+}
+.title-board{
+    cursor: pointer;
+    user-select: none;
+}
+.numbers-board{
+    width: 0;
+    display: flex;
+    row-gap: 5px;
+    flex-direction: column;
+    padding-inline-start: 25px;
+    position: relative;
+    top: -45px;
+}
+.numbers-board li{
+    height: 39px;
+}
+.table-board{
+    width: 384px;
+    & td:nth-child(1){
+        margin-right: 10px;
+    }
+}
