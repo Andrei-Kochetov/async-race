@@ -9,6 +9,7 @@ const CLASS_NAME = {
     main: ['main'],
     garageCarsCount: ['garage-cars-count'],
     currentCarsPage: ['current-cars-page'],
+    carsWrapper: ['cars-wrapper']
 }
 
 
@@ -18,10 +19,13 @@ export function createMain(){
     const controlBlock = createControlBlock();
     const garageCarsCount = utils.createElement('div', CLASS_NAME.garageCarsCount, 'Garage (0)');
     const currentCarsPage = utils.createElement('div', CLASS_NAME.currentCarsPage, 'Page # 1');
-    const carBlock = createCarBlock('MERS', 'orange');
+
+    //const carBlock = createCarBlock('MERS', 'orange');
+    const carsBlock = utils.createElement('div', CLASS_NAME.carsWrapper)
+
     const buttonsPagination = createButtonsPagination();
 
-    main.append(controlBlock,garageCarsCount, currentCarsPage, carBlock, createCarBlock('asdads', 'grey'),createCarBlock('asdads', 'grey'),createCarBlock('asdads', 'grey'),createCarBlock('asdads', 'grey'),createCarBlock('asdads', 'grey'),createCarBlock('asdads', 'grey'), buttonsPagination);
+    main.append(controlBlock,garageCarsCount, currentCarsPage, carsBlock, buttonsPagination);
 
 
     return main

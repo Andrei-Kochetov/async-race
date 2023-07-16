@@ -5,6 +5,7 @@ const CLASS_NAME = {
     carBlock: ['car-block'],
     highSection: ['high-section-car-block'],
     button: ['button-car-block'],
+    buttonSelect: ['button-select'],
     carName: ['car-name'],
     middleSection: ['middle-car-block'],
     buttonWrapper: ['button-wrapper'],
@@ -17,174 +18,146 @@ const CLASS_NAME = {
     road: ['road-car-block']
 }
 
-export function createCarBlock(name:string, color:string){
-    const carBlock = utils.createElement('div', CLASS_NAME.carBlock);
+
+export function createCarBlock(name:string, color:string, id:number){
+    const carBlock = utils.createElement('div', CLASS_NAME.carBlock, undefined, id);
 
     const highSection = utils.createElement('div', CLASS_NAME.highSection);
-    const buttonSelect = utils.createElement('button', CLASS_NAME.button, 'SELECT');
-    const buttonRemove = utils.createElement('button', CLASS_NAME.button, 'REMOVE');
+    const buttonSelect = utils.createElement('button', CLASS_NAME.buttonSelect, 'SELECT' );
+    const buttonRemove = utils.createElement('button', CLASS_NAME.button, 'REMOVE' );
     const carName = utils.createElement('div', CLASS_NAME.carName, name);
-    highSection.append(buttonSelect, buttonRemove, carName);
-
+    
     const middleSection = utils.createElement('div', CLASS_NAME.middleSection);
     const leftWrapper = utils.createElement('div', CLASS_NAME.leftWrapper);
     const buttonWrapper = utils.createElement('div', CLASS_NAME.buttonWrapper)
     const buttonStart = utils.createElement('button', CLASS_NAME.buttonStart, 'A');
     const buttonStop = utils.createElement('button', CLASS_NAME.buttonStop, 'B');
-    buttonWrapper.append(buttonStart, buttonStop);
+   
     const car = utils.createElement('div' ,CLASS_NAME.carImg, `
-    <svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:svg="http://www.w3.org/2000/svg" id="svg2" viewBox="0 0 1052.4 474.3" version="1.1">
-  <defs id="defs4">
-    <linearGradient id="linearGradient8695">
-      <stop id="stop8697" stop-color="#6c5353" offset="0"/>
-      <stop id="stop8699" stop-color="#241c1c" offset="1"/>
-    </linearGradient>
-    <radialGradient id="radialGradient8852" gradientUnits="userSpaceOnUse" cy="-358.2" cx="-752.22" gradientTransform="matrix(1.0946 1.4891e-7 0 .20883 76.062 -167.31)" r="705.07">
-      <stop id="stop8817" offset="0"/>
-      <stop id="stop8819" stop-opacity="0" offset="1"/>
-    </radialGradient>
-    <linearGradient id="linearGradient8854" x1="-1468" xlink:href="#linearGradient8695" gradientUnits="userSpaceOnUse" y1="-324.74" gradientTransform="matrix(1 0 0 .91837 2.7542 -44.627)" x2="-1468" y2="-277.59"/>
-    <linearGradient id="linearGradient8856" x1="-251.55" gradientUnits="userSpaceOnUse" y1="-574.45" gradientTransform="translate(18.361 11.24)" x2="-255.22" y2="-620.35">
-      <stop id="stop8681" stop-color="#483737" offset="0"/>
-      <stop id="stop8683" stop-color="#ac9393" offset="1"/>
-    </linearGradient>
-    <linearGradient id="linearGradient8858" y2="-544.93" gradientUnits="userSpaceOnUse" y1="-509.42" x2="-1265.9" x1="-1265.9">
-      <stop id="stop8534" stop-color="#f00" offset="0"/>
-      <stop id="stop8536" stop-color="#f55" offset="1"/>
-    </linearGradient>
-    <linearGradient id="linearGradient8860" y2="-769.08" gradientUnits="userSpaceOnUse" y1="-317.39" x2="-923.57" x1="-927.25">
-      <stop id="stop8463" stop-color="#f00" offset="0"/>
-      <stop id="stop8465" stop-color="#ffc4c4" offset="1"/>
-    </linearGradient>
-    <linearGradient id="linearGradient8862" y2="-175.44" gradientUnits="userSpaceOnUse" y1="-425.15" x2="-719.41" x1="-1128.3">
-      <stop id="stop8505" stop-color="#f55" offset="0"/>
-      <stop id="stop8507" stop-color="#f00" offset="1"/>
-    </linearGradient>
-    <linearGradient id="linearGradient8864" y2="-311.82" gradientUnits="userSpaceOnUse" y1="-366.51" x2="-801.93" x1="-801.93">
-      <stop id="stop8523" stop-color="#800000" offset="0"/>
-      <stop id="stop8525" stop-color="#f00" offset="1"/>
-    </linearGradient>
-    <linearGradient id="linearGradient8866" y2="563.24" gradientUnits="userSpaceOnUse" y1="335.17" x2="-1538.1" x1="-1538.1">
-      <stop id="stop8495" stop-color="#2e2424" offset="0"/>
-      <stop id="stop8497" offset="1"/>
-    </linearGradient>
-    <linearGradient id="linearGradient8868" y2="335.93" gradientUnits="userSpaceOnUse" y1="540.73" x2="-1565.1" x1="-1565.1">
-      <stop id="stop8479" stop-color="#6c5353" offset="0"/>
-      <stop id="stop8481" stop-color="#6c5353" stop-opacity="0" offset="1"/>
-    </linearGradient>
-    <linearGradient id="linearGradient8870" y2="580.15" gradientUnits="userSpaceOnUse" y1="398.8" x2="-1548.9" x1="-1548.9">
-      <stop id="stop8487" stop-color="#483e37" offset="0"/>
-      <stop id="stop8489" stop-color="#241f1c" offset="1"/>
-    </linearGradient>
-    <linearGradient id="linearGradient8872" y2="-300.87" gradientUnits="userSpaceOnUse" y1="-389.92" x2="-52.33" x1="-15.607">
-      <stop id="stop8689" stop-color="#6c5353" offset="0"/>
-      <stop id="stop8691" stop-color="#241c1c" offset="1"/>
-    </linearGradient>
-    <linearGradient id="linearGradient8874" x1="-1436.8" xlink:href="#linearGradient8695" gradientUnits="userSpaceOnUse" x2="-1414.7" y1="-389" y2="-301.78"/>
-    <linearGradient id="linearGradient8882" x1="-560.94" gradientUnits="userSpaceOnUse" y1="-649.73" gradientTransform="translate(-22.737 41.96)" x2="-555.43" y2="-617.14">
-      <stop id="stop8671" stop-color="#faa" offset="0"/>
-      <stop id="stop8673" stop-color="#faa" stop-opacity="0" offset="1"/>
-    </linearGradient>
-    <linearGradient id="linearGradient8884" x1="-1032.5" gradientUnits="userSpaceOnUse" y1="-591.46" gradientTransform="matrix(1.0338 0 0 1 38.894 -5.9633)" x2="-1027.2" y2="-524.35">
-      <stop id="stop8707" stop-color="#f00" offset="0"/>
-      <stop id="stop8709" stop-color="#f00" stop-opacity="0" offset="1"/>
-    </linearGradient>
-    <linearGradient id="linearGradient8886" x1="-1032.5" gradientUnits="userSpaceOnUse" y1="-591.46" gradientTransform="matrix(1.1183 0 0 1.0002 433.9 -2.7249)" x2="-1027.2" y2="-524.35">
-      <stop id="stop8707-1" stop-color="#f00" offset="0"/>
-      <stop id="stop8709-2" stop-color="#f00" stop-opacity="0" offset="1"/>
-    </linearGradient>
-  </defs>
-  <g id="layer1" transform="translate(-100 -500.06)">
-    <flowRoot id="flowRoot7331" style="word-spacing:0px;letter-spacing:0px" xml:space="preserve" font-size="40px" line-height="125%" font-family="Sans" fill="#000000">
-      <flowRegion id="flowRegion7333">
-        <rect id="rect7335" y="326.65" width="705.71" height="508.57" x="140"/>
-      </flowRegion>
-      <flowPara id="flowPara7337"/>
-    </flowRoot>
-    <g id="g8823" transform="matrix(.55164 0 0 .55164 936.73 1073)">
-      <path id="path8813" transform="matrix(1.0608 0 0 .54380 27.975 -110.11)" fill="url(#radialGradient8852)" d="m-33.05-235.68c0 15.718-315.67 28.46-705.07 28.46s-705.07-12.742-705.07-28.46 315.67-28.46 705.07-28.46 705.07 12.742 705.07 28.46z"/>
-      <rect id="rect8747" rx="18.307" ry="36.742" height="41.313" width="254.3" y="-350.44" x="-1479" fill="url(#linearGradient8854)"/>
-      <path id="path8677" fill="url(#linearGradient8856)" d="m-396.6-564.13-0.91806-16.525 183.61-16.525 36.723 48.657z"/>
-      <rect id="rect8387-7" ry="38.419" rx="41.782" transform="matrix(1 0 .15809 .98743 0 0)" height="160.41" width="49.22" y="-566.21" x="-1023.2" fill="#020202"/>
-      <rect id="rect8387" ry="38.436" rx="41.782" transform="matrix(1 0 .14418 .98955 0 0)" height="160.07" width="44.793" y="-590.36" x="-728.8" fill="#020202"/>
-      <path id="path8366-9" d="m-346.16-582.69c-38.838 0.13178-82.22 1.887-130.62 5.8125l11.094 44.188 424.03 9.3125s-67.154-60.118-304.5-59.312zm-858.19 36.094c-153.4-0.12-260 60.6-260 60.6l340.81-9.3125 8.9375-44.188c-31.261-4.9702-61.297-7.0701-89.719-7.0938z" fill="${color}"/>
-      <path id="path8344" fill="#6c5353" d="m-13.257-356.71c14-63.12 6.4153-107.15-17.992-83.332l-6.1552 85.699z"/>
-      <rect id="rect7439-1" rx="20.599" ry="20.599" height="47.348" width="721.58" y="-336.07" x="-1246.2" fill="#333"/>
-      <rect id="rect7439" rx="20.599" ry="20.599" height="47.348" width="1250" y="-346.59" x="-1384.3" fill="#4d4d4d"/>
-      <path id="path7437" d="m-618.94-712.59s-335.41-0.38265-491.44 77.438l-120 102.56s-245.46 23.924-254.28 51.438c-28.354 88.458 74.281 171.34 74.281 171.34h1324.3c79.958-11.465 79.051-109.59 59.969-220.09-136.71-15.394-275.69-48.12-429.97-35.25-111.96-150.65-162.84-147.44-162.84-147.44zm-21.688 24.438c2.1563-0.014 3.3125 0 3.3125 0 48.676 1.8946 80.698 41.422 120.94 100.94l-18.46 27.71-262.97 12.5-14.1-131.69c83.732-8.4126 155.37-9.366 171.28-9.4688zm-199.06 12.469 13.906 129.97-280.06 12.938 43.75-88.562c57.465-28.622 143.07-44.986 222.41-54.344z" fill="${color}"/>
-      <path id="path7437-8" fill="${color}" d="m-829-677.09-10.688 1.4063 13.906 129.97-280.06 12.938c-18.874 101.85 90.472 60.769 76.562 222.97h245.41z"/>
-      <path id="path7437-2" fill="${color}" d="m-567.44-342.94c-353.93-0.1394-635.75 10.283-856.13 21.156 7.8516 7.6455 13.188 11.969 13.188 11.969h1324.3c20.882-2.9942 36.22-11.914 47.188-25.406-191.73-5.3822-367.57-7.6553-528.53-7.7188z"/>
-      <g id="g8607" transform="translate(0 -.95007)">
-        <path id="path7459" transform="matrix(1.0747 0 0 1.0752 478.83 -820.99)" fill="url(#linearGradient8866)" d="m-1422.3 446.31c0 61.713-50.028 111.74-111.74 111.74-61.713 0-111.74-50.028-111.74-111.74 0-61.713 50.028-111.74 111.74-111.74 61.713 0 111.74 50.028 111.74 111.74z"/>
-        <path id="path7459-3" transform="matrix(.86750 0 0 .86793 160.97 -728.47)" fill="url(#linearGradient8868)" d="m-1422.3 446.31c0 61.713-50.028 111.74-111.74 111.74-61.713 0-111.74-50.028-111.74-111.74 0-61.713 50.028-111.74 111.74-111.74 61.713 0 111.74 50.028 111.74 111.74z"/>
-        <path id="path7459-3-3" transform="matrix(.29372 0 0 .29387 -719.25 -472.26)" fill="url(#linearGradient8870)" d="m-1422.3 446.31c0 61.713-50.028 111.74-111.74 111.74-61.713 0-111.74-50.028-111.74-111.74 0-61.713 50.028-111.74 111.74-111.74 61.713 0 111.74 50.028 111.74 111.74z"/>
-      </g>
-      <path id="path8342" fill="url(#linearGradient8872)" d="m-65.261-404.03-20.833 94.222s40.783 4.4795 44.507 3.7878c29.339-5.4491 65.038-62.574 53.976-98.01z"/>
-      <path id="path8342-5" fill="url(#linearGradient8874)" d="m-1404.7-400.07 20.833 94.222s-40.783 4.4795-44.507 3.7878c-29.339-5.4491-65.038-62.574-53.976-98.01z"/>
-      <path id="rect8455" fill="#f00" d="m-547.9-615.71c-22.728-7.1609-65.679 15.076-65.679 15.076-4.1179 10.667-4.1668 21.334 0.28345 32.002 0 0 34.981 3.5595 54.762 2.1005 1.6962-4.1161 3.4187-8.2158 5.0239-12.362 12.815 3.626 23.813 10.998 32.613 22.77l-0.10284 8.9395 32.737 1.1014-0.77058-9.2292-21.673-2.7218c-14.593-13.235-30.323-26.414-36.842-39.807 1.2202-5.5179 1.924-11.19 1.8524-17.137-0.73499-0.25223-1.4711-0.5005-2.2044-0.73118z"/>
-      <g id="g8602" transform="translate(41.547 -225.91)">
-        <path id="path7459-6" transform="matrix(1.0747 0 0 1.0752 1300.7 -596.03)" fill="url(#linearGradient8866)" d="m-1422.3 446.31c0 61.713-50.028 111.74-111.74 111.74-61.713 0-111.74-50.028-111.74-111.74 0-61.713 50.028-111.74 111.74-111.74 61.713 0 111.74 50.028 111.74 111.74z"/>
-        <path id="path7459-3-7" transform="matrix(.86750 0 0 .86793 982.85 -503.51)" fill="url(#linearGradient8868)" d="m-1422.3 446.31c0 61.713-50.028 111.74-111.74 111.74-61.713 0-111.74-50.028-111.74-111.74 0-61.713 50.028-111.74 111.74-111.74 61.713 0 111.74 50.028 111.74 111.74z"/>
-        <path id="path7459-3-3-1" transform="matrix(.29372 0 0 .29387 102.63 -247.3)" fill="url(#linearGradient8870)" d="m-1422.3 446.31c0 61.713-50.028 111.74-111.74 111.74-61.713 0-111.74-50.028-111.74-111.74 0-61.713 50.028-111.74 111.74-111.74 61.713 0 111.74 50.028 111.74 111.74z"/>
-      </g>
-      <path id="rect8455-8" fill="${color}" d="m-547.9-615.71c-22.728-7.1609-65.679 15.076-65.679 15.076-4.1179 10.667-4.1668 21.334 0.28345 32.002 0 0 34.981 3.5595 54.762 2.1005 1.6962-4.1161 3.4187-8.2158 5.0239-12.362 12.815 3.626 23.813 10.998 32.613 22.77l-0.10284 8.9395 32.737 1.1014-0.77058-9.2292-21.673-2.7218c-14.593-13.235-30.323-26.414-36.842-39.807 1.2202-5.5179 1.924-11.19 1.8524-17.137-0.73499-0.25223-1.4711-0.5005-2.2044-0.73118z"/>
-      <rect id="rect8703" ry="38.406" rx="18.237" transform="matrix(.99937 -.035622 .038071 .99928 0 0)" height="22.073" width="55.702" y="-562.41" x="-1057.8" fill="url(#linearGradient8884)"/>
-      <rect id="rect8703-8" ry="38.398" rx="18.235" transform="matrix(.99946 -.032931 .041182 .99915 0 0)" height="22.076" width="60.255" y="-559.24" x="-752.43" fill="url(#linearGradient8886)"/>
-      <path id="path7437-4" fill="#f95" d="m-41.58-510.72c-33.901 0.6471-60.187 12.761-59.54 27.781l0.75129 17.469c0.66778 15.505 29.756 28.083 65.237 28.188l18.187 0.0625c-0.43687-22.819-2.9916-47.636-6.8555-73.469l-14.494-0.0313c-1.1088-0.003-2.1933-0.0209-3.2869 0zm-1447.2 26.062c-7.9323 25.248-5.231 50.021 2.6922 72.531 31.42-4.3942 54.234-18.172 52.34-32.406l-2.2852-17.344c-1.7546-13.184-24.137-22.344-52.747-22.781z"/>
+    <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="80px" height="40px" viewBox="0 -100 1280.000000 640.000000" preserveAspectRatio="xMidYMid meet">
+    <metadata>
+      Created by potrace 1.15, written by Peter Selinger 2001-2017
+    </metadata>
+    <g transform="translate(0.000000,640.000000) scale(0.100000,-0.100000)" fill="${color}" stroke="none">
+    <path d="M3565 5336 c-106 -30 -101 -26 -108 -111 -4 -42 -9 -80 -12 -85 -6
+    -10 -246 -105 -590 -234 -448 -167 -1052 -415 -1173 -483 -78 -43 -193 -91
+    -250 -104 -23 -5 -98 -14 -165 -19 -67 -6 -167 -19 -222 -30 -154 -31 -340
+    -49 -563 -57 l-203 -6 -43 -66 c-59 -91 -60 -95 -26 -130 37 -37 38 -65 3
+    -150 -25 -62 -27 -78 -31 -256 l-4 -190 -38 -32 c-91 -78 -133 -209 -134 -418
+    0 -194 11 -396 26 -482 13 -71 14 -74 72 -122 69 -58 130 -129 158 -184 64
+    -126 534 -211 1384 -250 l92 -4 -6 119 c-6 142 8 256 49 383 112 352 394 622
+    756 722 90 26 112 28 278 28 165 0 188 -2 278 -27 201 -56 361 -152 504 -302
+    140 -145 222 -293 274 -492 21 -79 24 -109 23 -279 -1 -127 -6 -214 -16 -263
+    l-15 -73 3006 7 c1653 4 3007 8 3009 9 1 1 -8 37 -20 81 -19 67 -22 105 -22
+    259 -1 166 1 187 27 279 117 421 467 736 885 797 119 17 325 7 432 -21 239
+    -63 453 -205 601 -399 70 -92 154 -267 185 -386 24 -88 27 -119 27 -260 1
+    -116 -4 -181 -16 -234 -10 -41 -16 -75 -15 -76 2 -1 62 2 133 6 266 16 458 45
+    525 79 48 24 97 81 127 146 l24 52 -16 157 c-15 152 -15 163 4 284 63 388 50
+    680 -35 802 -134 193 -526 336 -1429 519 -737 149 -1322 209 -2033 210 -228 0
+    -226 0 -347 85 -187 131 -1045 607 -1471 815 -383 187 -788 281 -1439 332
+    -208 17 -1106 16 -1400 0 -121 -7 -314 -19 -430 -27 -302 -22 -286 -22 -341
+    10 -140 81 -187 94 -269 71z m1885 -333 c6 -37 38 -238 71 -446 32 -209 66
+    -422 75 -474 9 -52 15 -96 13 -97 -11 -9 -1699 29 -1951 44 -206 13 -417 36
+    -485 54 -98 26 -198 119 -249 231 -35 75 -36 172 -5 255 17 45 30 61 68 86 83
+    54 135 80 253 127 341 136 858 230 1460 267 269 16 270 16 511 18 l227 2 12
+    -67z m630 47 c264 -18 777 -110 1029 -186 186 -56 445 -188 756 -387 211 -134
+    274 -181 250 -185 -75 -12 -133 -50 -162 -106 -19 -35 -21 -136 -4 -179 l11
+    -27 -907 2 -906 3 -59 160 c-110 302 -298 878 -298 916 0 6 95 2 290 -11z"></path>
+    <path d="M2633 3125 c-223 -40 -410 -141 -568 -306 -132 -138 -213 -283 -262
+    -467 -22 -83 -26 -119 -26 -247 -1 -169 10 -236 65 -382 87 -230 271 -436 493
+    -551 85 -44 178 -78 271 -98 107 -23 312 -23 419 1 392 84 699 375 802 761 23
+    86 26 120 27 254 1 158 -5 199 -46 330 -98 310 -355 567 -668 669 -150 50
+    -354 64 -507 36z m350 -301 c249 -56 457 -247 543 -499 25 -72 28 -95 28 -220
+    1 -153 -15 -228 -74 -345 -94 -186 -283 -337 -485 -386 -96 -24 -268 -24 -360
+    0 -320 84 -544 355 -562 681 -20 359 209 673 558 765 94 24 253 26 352 4z"></path>
+    <path d="M2600 2697 c-36 -13 -85 -36 -109 -51 l-44 -28 116 -115 c81 -82 120
+    -114 131 -110 14 6 16 29 16 167 0 186 6 178 -110 137z"></path>
+    <path d="M2920 2561 c0 -139 2 -162 16 -168 11 -4 50 28 130 108 l115 114 -28
+    22 c-34 28 -138 70 -193 79 l-40 7 0 -162z"></path>
+    <path d="M2282 2448 c-28 -36 -92 -191 -92 -225 0 -10 34 -13 165 -13 151 0
+    165 1 165 18 0 15 -206 232 -221 232 -4 0 -11 -6 -17 -12z"></path>
+    <path d="M3222 2351 c-62 -59 -112 -115 -112 -124 0 -15 17 -17 165 -17 131 0
+    165 3 165 13 0 40 -69 205 -95 227 -7 6 -48 -27 -123 -99z"></path>
+    <path d="M2781 2332 c-12 -22 11 -62 34 -62 8 0 21 10 29 22 20 28 4 58 -29
+    58 -13 0 -29 -8 -34 -18z"></path>
+    <path d="M2749 2161 c-32 -33 -37 -67 -14 -110 29 -57 104 -64 151 -14 53 57
+    9 153 -71 153 -27 0 -44 -8 -66 -29z"></path>
+    <path d="M2570 2125 c-26 -32 13 -81 48 -59 24 16 27 45 6 61 -23 17 -39 16
+    -54 -2z"></path>
+    <path d="M3006 2124 c-20 -19 -20 -38 -2 -54 23 -19 61 -8 64 18 7 44 -32 67
+    -62 36z"></path>
+    <path d="M2190 1975 c0 -29 41 -140 72 -194 l31 -53 117 117 c71 71 116 123
+    113 131 -4 11 -40 14 -169 14 -141 0 -164 -2 -164 -15z"></path>
+    <path d="M3110 1972 c0 -9 51 -68 114 -131 l114 -114 31 54 c30 51 71 165 71
+    195 0 11 -31 14 -165 14 -151 0 -165 -1 -165 -18z"></path>
+    <path d="M2780 1901 c-7 -15 -5 -24 8 -41 32 -40 85 -4 62 41 -14 25 -56 25
+    -70 0z"></path>
+    <path d="M2562 1697 c-61 -62 -112 -115 -112 -119 0 -18 208 -108 249 -108 7
+    0 11 54 11 164 0 140 -2 165 -16 170 -9 3 -16 6 -17 6 -1 0 -53 -51 -115 -113z"></path>
+    <path d="M2933 1803 c-15 -6 -19 -333 -4 -333 46 0 251 88 251 108 0 9 -223
+    232 -230 231 -3 0 -11 -3 -17 -6z"></path>
+    <path d="M10700 3119 c-390 -84 -696 -376 -797 -759 -31 -117 -41 -292 -24
+    -411 33 -227 150 -453 318 -609 267 -250 643 -344 993 -249 117 32 283 118
+    380 196 487 396 518 1128 67 1560 -97 93 -166 140 -290 198 -137 64 -235 86
+    -407 91 -120 3 -162 0 -240 -17z m445 -313 c238 -81 409 -258 486 -506 30 -96
+    33 -289 5 -388 -110 -400 -513 -637 -911 -536 -149 38 -313 147 -402 267 -176
+    238 -203 533 -71 797 34 69 60 103 138 180 77 78 111 104 181 139 129 65 207
+    81 364 77 109 -3 143 -7 210 -30z"></path>
+    <path d="M10703 2700 c-54 -19 -153 -71 -153 -80 0 -3 51 -57 114 -119 80 -80
+    119 -112 130 -108 14 5 16 29 16 167 l0 160 -27 -1 c-16 0 -52 -9 -80 -19z"></path>
+    <path d="M11020 2561 c0 -139 2 -162 16 -168 22 -8 247 216 234 232 -17 20
+    -163 84 -207 91 l-43 7 0 -162z"></path>
+    <path d="M10366 2424 c-29 -44 -76 -165 -76 -194 0 -19 7 -20 165 -20 126 0
+    165 3 165 13 0 7 -51 63 -114 126 l-114 114 -26 -39z"></path>
+    <path d="M11313 2348 c-61 -62 -109 -119 -106 -125 6 -15 333 -19 333 -4 0 45
+    -88 241 -108 241 -4 0 -57 -51 -119 -112z"></path>
+    <path d="M10882 2338 c-17 -17 -15 -32 7 -52 16 -14 23 -15 41 -6 31 17 24 64
+    -10 68 -14 2 -31 -3 -38 -10z"></path>
+    <path d="M10846 2159 c-68 -81 17 -194 110 -144 89 48 56 175 -46 175 -30 0
+    -44 -6 -64 -31z"></path>
+    <path d="M10670 2126 c-19 -23 -8 -61 18 -64 44 -7 67 32 36 62 -19 20 -38 20
+    -54 2z"></path>
+    <path d="M11106 2127 c-21 -16 -18 -45 7 -61 37 -23 77 35 41 61 -10 7 -21 13
+    -24 13 -3 0 -14 -6 -24 -13z"></path>
+    <path d="M10290 1970 c0 -29 43 -141 74 -195 l28 -48 116 116 c81 81 113 120
+    109 131 -6 14 -29 16 -167 16 -152 0 -160 -1 -160 -20z"></path>
+    <path d="M11207 1978 c-3 -7 47 -66 111 -130 l116 -118 27 43 c27 44 79 177
+    79 203 0 12 -28 14 -164 14 -122 0 -166 -3 -169 -12z"></path>
+    <path d="M10881 1901 c-14 -25 -5 -48 20 -56 27 -9 51 13 47 44 -4 34 -51 43
+    -67 12z"></path>
+    <path d="M10662 1697 c-61 -62 -112 -115 -112 -119 0 -20 201 -108 247 -108
+    10 0 13 34 13 164 0 140 -2 165 -16 170 -9 3 -16 6 -17 6 -1 0 -53 -51 -115
+    -113z"></path>
+    <path d="M11033 1803 c-10 -3 -13 -47 -13 -169 0 -90 4 -164 8 -164 36 0 186
+    61 239 98 16 10 -216 242 -234 235z"></path>
     </g>
-  </g>
-  <metadata>
-    <rdf:RDF>
-      <cc:Work>
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-        <cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/>
-        <dc:publisher>
-          <cc:Agent rdf:about="http://openclipart.org/">
-            <dc:title>Openclipart</dc:title>
-          </cc:Agent>
-        </dc:publisher>
-        <dc:title>red car</dc:title>
-        <dc:date>2013-06-14T17:48:22</dc:date>
-        <dc:description>just a car I made and I though it could be useful to someone</dc:description>
-        <dc:source>http://openclipart.org/detail/179328/red-car-by-rematuche-179328</dc:source>
-        <dc:creator>
-          <cc:Agent>
-            <dc:title>rematuche</dc:title>
-          </cc:Agent>
-        </dc:creator>
-        <dc:subject>
-          <rdf:Bag>
-            <rdf:li>automobile</rdf:li>
-            <rdf:li>car</rdf:li>
-            <rdf:li>city</rdf:li>
-            <rdf:li>free</rdf:li>
-            <rdf:li>red</rdf:li>
-            <rdf:li>sport</rdf:li>
-            <rdf:li>svg</rdf:li>
-          </rdf:Bag>
-        </dc:subject>
-      </cc:Work>
-      <cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/">
-        <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
-        <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
-        <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
-      </cc:License>
-    </rdf:RDF>
-  </metadata>
-</svg>
-
+  </svg>
 `);
-    leftWrapper.append(buttonWrapper, car);
     const rightWrapper = utils.createElement('div', CLASS_NAME.rightWrapper);
     const flag = utils.createImgElement(CLASS_NAME.flagImg, '../../../assets/images/flag.svg');
-    rightWrapper.append(flag);
-    middleSection.append(leftWrapper, rightWrapper);
 
     const road = utils.createElement('div', CLASS_NAME.road);
-
+ 
+    highSection.append(buttonSelect, buttonRemove, carName);
+    buttonWrapper.append(buttonStart, buttonStop);
+    leftWrapper.append(buttonWrapper, car);
+    rightWrapper.append(flag);
+    middleSection.append(leftWrapper, rightWrapper);
     carBlock.append(highSection, middleSection, road);
 
+    const inputUpdate: HTMLInputElement = document.querySelector('.input-update')!;
+    const inputColorUpdate: HTMLInputElement = document.querySelector('.input-color-update')!;
+    buttonSelect!.addEventListener('click', (): void=>{
+        const carSvgColor = car.querySelector('svg')?.querySelector('g')!.getAttribute('fill');
+        inputUpdate!.value = carName!.textContent!;
+        inputColorUpdate!.value = `${carSvgColor}`
+        car.setAttribute('color', `${carSvgColor}`);
+        inputUpdate.setAttribute('id', `${id}`);
+    })    
+    buttonRemove.addEventListener('click',()=>{
+        carBlock.remove()
+    })
+  
     return carBlock
 
 }
