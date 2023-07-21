@@ -7,7 +7,7 @@ const path:types.Path = {
   winners: '/winners',
 };
 
-export const getCars = async (page?:number, limit?:number):Promise<types.CarParam[]> => {
+export const getCars = async (page:number = 1, limit:number = 10):Promise<types.CarParam[]> => {
   // .headers.get('X-Total-Count')
   const response = await fetch(`${path.apiUrl}${path.garage}?_page=${page}&_limit=${limit}`);
   // console.log(response)
@@ -29,6 +29,12 @@ export const getCar = async (id:number):Promise<types.CarParam[]> => {
   const car = await response.json();
   return car;
 };
+export const getTotalCount = async ():Promise<string> => {
+    const response = await fetch(`${path.apiUrl}${path.garage}?_limit=10`);
+    const totalCount = await response.headers.get('X-Total-Count')!;
+    return totalCount;
+  };
+ 
 
 export const getWinner = async (id:number): Promise<types.WinParam[]> => {
   const response = await fetch(`${path.apiUrl}${path.winners}?id=${id}`);
@@ -98,15 +104,50 @@ Promise<types.WinParam> => {
   return winner;
 };
 
-export const startStopCar = async (id:number, status:types.StartStop):
+export const startCar = async (id:number):
 Promise<types.StartStopResponse> => {
-  const response = await fetch(`${path.apiUrl}${path.engine}?id=${id}&status=${status}`, { method: 'PATCH' });
+  const response = await fetch(`${path.apiUrl}${path.engine}?id=${id}&status=started`, { method: 'PATCH' });
+  const startStopResponse = await response.json();
+  return startStopResponse;
+};
+export const stopCar = async (id:number):
+Promise<types.StartStopResponse> => {
+  const response = await fetch(`${path.apiUrl}${path.engine}?id=${id}&status=stopped`, { method: 'PATCH' });
   const startStopResponse = await response.json();
   return startStopResponse;
 };
 
-export const driveCar = async (id:number, status: 'drive'):Promise<types.DriveResponse> => {
-  const response = await fetch(`${path.apiUrl}${path.engine}?id=${id}&status=${status}`, { method: 'PATCH' });
+export const driveCar = (id:number) => {
+  const response =  fetch(`http://127.0.0.1:3000/engine?id=${id}&status=drive`, { method: 'PATCH' })
+    .catch(()=>{
+
+    })
+
+};
+
+/* export const driveCar = async (id:number):Promise<types.DriveResponse> => {
+  const response = await fetch(`${path.apiUrl}${path.engine}?id=${id}&status=drive`, { method: 'PATCH' });
+  const driveResponse = await response.json();
+  return driveResponse;
+}; */
+
+/* export const startCar = async (id:number):
+Promise<types.StartStopResponse> => {
+  const response = await fetch(`${path.apiUrl}${path.engine}?id=${id}&status=started`, { method: 'PATCH' });
+  const startStopResponse = await response.json();
+  return startStopResponse;
+};
+export const stopCar = async (id:number):
+Promise<types.StartStopResponse> => {
+  const response = await fetch(`${path.apiUrl}${path.engine}?id=${id}&status=stopped`, { method: 'PATCH' });
+  const startStopResponse = await response.json();
+  return startStopResponse;
+};
+
+export const driveCar = async (id:number):Promise<types.DriveResponse> => {
+  const response = await fetch(`${path.apiUrl}${path.engine}?id=${id}&status=drive`, { method: 'PATCH' });
   const driveResponse = await response.json();
   return driveResponse;
 };
+
+ */

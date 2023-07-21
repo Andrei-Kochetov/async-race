@@ -1,5 +1,8 @@
 import './carBlock.scss';
 import * as utils from '../../../../utils/utils';
+import * as api from '../../../../utils/api';
+import * as controller from '../../../../controller/controller'
+
 
 const CLASS_NAME = {
     carBlock: ['car-block'],
@@ -7,6 +10,7 @@ const CLASS_NAME = {
     button: ['button-car-block'],
     buttonSelect: ['button-select'],
     carName: ['car-name'],
+    carWinner: ['car-winner'],
     middleSection: ['middle-car-block'],
     buttonWrapper: ['button-wrapper'],
     buttonStart: ['button-start'],
@@ -26,6 +30,7 @@ export function createCarBlock(name:string, color:string, id:number){
     const buttonSelect = utils.createElement('button', CLASS_NAME.buttonSelect, 'SELECT' );
     const buttonRemove = utils.createElement('button', CLASS_NAME.button, 'REMOVE' );
     const carName = utils.createElement('div', CLASS_NAME.carName, name);
+    const carWinnerShow = utils.createElement('div', CLASS_NAME.carWinner);
     
     const middleSection = utils.createElement('div', CLASS_NAME.middleSection);
     const leftWrapper = utils.createElement('div', CLASS_NAME.leftWrapper);
@@ -133,12 +138,13 @@ export function createCarBlock(name:string, color:string, id:number){
     </g>
   </svg>
 `);
+
     const rightWrapper = utils.createElement('div', CLASS_NAME.rightWrapper);
     const flag = utils.createImgElement(CLASS_NAME.flagImg, '../../../assets/images/flag.svg');
 
     const road = utils.createElement('div', CLASS_NAME.road);
  
-    highSection.append(buttonSelect, buttonRemove, carName);
+    highSection.append(buttonSelect, buttonRemove, carName, carWinnerShow);
     buttonWrapper.append(buttonStart, buttonStop);
     leftWrapper.append(buttonWrapper, car);
     rightWrapper.append(flag);
@@ -147,6 +153,7 @@ export function createCarBlock(name:string, color:string, id:number){
 
     const inputUpdate: HTMLInputElement = document.querySelector('.input-update')!;
     const inputColorUpdate: HTMLInputElement = document.querySelector('.input-color-update')!;
+    
     buttonSelect!.addEventListener('click', (): void=>{
         const carSvgColor = car.querySelector('svg')?.querySelector('g')!.getAttribute('fill');
         inputUpdate!.value = carName!.textContent!;
@@ -155,9 +162,22 @@ export function createCarBlock(name:string, color:string, id:number){
         inputUpdate.setAttribute('id', `${id}`);
     })    
     buttonRemove.addEventListener('click',()=>{
-        carBlock.remove()
+        controller.deleteCar(id);
     })
-  
+    buttonStart.addEventListener('click', ()=>{
+        const main:HTMLElement = document.querySelector('.main')!;
+        const mainWidth = main.offsetWidth;
+        const endX = mainWidth - 45 - 100;
+        controller.start(car,id,endX,)
+    })
+    buttonStop.addEventListener('click', ()=>{
+        controller.returnCar(car, id);
+    })
+    let ff = ()=> console.log('weew')
+    car.addEventListener('transitionend', ()=>{
+        console.log('dwedew')
+    })
+
     return carBlock
 
 }

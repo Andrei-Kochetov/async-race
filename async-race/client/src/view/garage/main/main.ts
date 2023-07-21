@@ -17,16 +17,15 @@ export function createMain(){
     const main = utils.createElement('main', CLASS_NAME.main);
 
     const controlBlock = createControlBlock();
+    
     const garageCarsCount = utils.createElement('div', CLASS_NAME.garageCarsCount, 'Garage (0)');
     const currentCarsPage = utils.createElement('div', CLASS_NAME.currentCarsPage, 'Page # 1');
 
-    //const carBlock = createCarBlock('MERS', 'orange');
     const carsBlock = utils.createElement('div', CLASS_NAME.carsWrapper)
 
     const buttonsPagination = createButtonsPagination();
 
-    main.append(controlBlock,garageCarsCount, currentCarsPage, carsBlock, buttonsPagination);
-
+    main.append(controlBlock,buttonsPagination,garageCarsCount, currentCarsPage, carsBlock);
 
     return main
 }

@@ -1,6 +1,7 @@
 import './controlBlock.scss';
 import * as utils from '../../../utils/utils';
 import * as api from '../../../utils/utils';
+import * as controller from '../../../controller/controller';
 
 const CLASS_NAME = {
     wrapperControlBlock: ['wrapper-control-block'],
@@ -42,7 +43,10 @@ export function createControlBlock():HTMLElement{
     wrapper.append(wrapperCreateSection,wrapperUpdateSection,wrapperButtonSection);
 
     buttonUpdateSection.addEventListener('click',()=>{
-        const id = inputUpdateSection.getAttribute('id')
+        if(!inputUpdateSection.getAttribute('id')) {
+            return;
+        }
+        const id = inputUpdateSection.getAttribute('id')!
         const carName = document.querySelector('div[id=' + `"${id}"`+ ']')?.querySelector('.car-name');
         inputUpdateSection as HTMLInputElement;
         carName!.textContent = inputUpdateSection.value ;
@@ -52,9 +56,30 @@ export function createControlBlock():HTMLElement{
         console.log(currColor)
         const svg = car!.querySelector('svg')!;
         svg.innerHTML = svg.innerHTML.replace(new RegExp(`${currColor}`, 'ig'), `${inputColorUpdateSection.value}`)
-
+        console.log(typeof currColor)
+        controller.updateCar(+id, inputUpdateSection.value , `${inputColorUpdateSection.value}` );
+        inputUpdateSection.removeAttribute('id')
         inputUpdateSection.value = '';
         inputColorUpdateSection.value = '';
+    })
+    buttonCreateSection.addEventListener('click',()=>{
+        if(!inputCreateSection.value) {
+            return;
+        }
+        const inputCreateValue = inputCreateSection.value;
+        const inputColorCreateValue = inputColorCreateSection.value;
+        controller.createCar(inputCreateValue, inputColorCreateValue);
+        inputCreateSection.value = '';
+        inputColorCreateSection.value = '';
+    })
+    buttonGenerateCars.addEventListener('click', ()=>{
+        controller.create100Car();
+    })
+    buttonRace.addEventListener('click',()=>{
+        controller.race()
+    })
+    buttonReset.addEventListener('click', ()=>{
+        controller.resetCars()
     })
     return wrapper;
 }
