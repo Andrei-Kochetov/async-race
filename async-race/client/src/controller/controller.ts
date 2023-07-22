@@ -181,13 +181,13 @@ export async function stopCar(id:number){
     await appendCars();
 }
  
-let animationFrameId:number;
+const  animationFrameIdObj: Record<string, number> = {}
 
 async function drive(id:number){
     await fetch(`http://127.0.0.1:3000/engine?id=${id}&status=drive`, { method: 'PATCH' })
         .then(res=>{
             if(res.status === 500){
-                cancelAnimationFrame(animationFrameId);
+                cancelAnimationFrame(animationFrameIdObj[id]);
             }
         }) 
 }
@@ -195,7 +195,7 @@ async function drive(id:number){
 export async function returnCar(carDiv:HTMLElement, id:number){
     const car = carDiv;
     await api.stopCar(id);
-    cancelAnimationFrame(animationFrameId);
+    cancelAnimationFrame(animationFrameIdObj[id]);
     car.style.transform =`translate(0px)`;
 }
 
@@ -213,20 +213,20 @@ export async function start(carDiv:HTMLElement, id:number, endPoint:number, spee
     const dX = endPoint /frameCount;
 
     let currentX = 0;
-    
-    if(!func){
-       drive(id); 
-    }
-    
     car.style.transform =`translate(${currentX}px)`;
     const tick = ()=>{
         currentX += dX;
         car.style.transform =`translate(${currentX}px)`;
         if(currentX<endPoint){
-            animationFrameId = requestAnimationFrame(tick)
+            animationFrameIdObj[id] = requestAnimationFrame(tick)
         }
     }
     tick();
+    if(!func){
+       drive(id); 
+    }
+    
+
 } 
 
 
@@ -252,11 +252,12 @@ export async function race(){
         idArr.push(id);
         start(car,id,endX,speedsArr[i], true);
     })
+    console.log(carsCurrPage)
     const arrPromiseDrive = Array.from(carsCurrPage).map( el=>{
             const id = Number(el.getAttribute('id'))!;
             return fetch(`http://127.0.0.1:3000/engine?id=${id}&status=drive`, { method: 'PATCH' }).then(res=>{
                 if(res.status === 500){
-                    cancelAnimationFrame(animationFrameId);
+                    cancelAnimationFrame(animationFrameIdObj[id]);
                     throw new Error
                 }
                   return res  
@@ -265,7 +266,7 @@ export async function race(){
         })
     
     const firstCarResponse = await Promise.any(arrPromiseDrive);
-    console.log(firstCarResponse)
+    //console.log(firstCarResponse)
     const firstCarIndex = +firstCarResponse.url.split('id=')[1].slice(0,1);
     const firstCar = carsCurrPage[firstCarIndex - 1];
     const bestTime = +speedsNumArr[firstCarIndex - 1];

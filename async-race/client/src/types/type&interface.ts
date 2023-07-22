@@ -11,6 +11,8 @@ export type Path = {
   [key: string]: string;
 };
 
+
+
 export type CarParam = {
   color: string,
   name: string,
