@@ -11,6 +11,8 @@ const CLASS_NAME = {
     inputColorCreate: ['input-color','input-color-create'],
     inputColorUpdate: ['input-color','input-color-update'],
     button: ['btn'],
+    buttonRace: ['btn', 'button-race'],
+    buttonGenerate: ['btn', 'button-generate'],
     buttonCreate: ['btn', 'btn-section', 'button-create'],
     buttonUpdate: ['btn', 'btn-section', 'button-update'],
 }
@@ -23,20 +25,21 @@ export function createControlBlock():HTMLElement{
     const inputColorCreateSection = utils.createInputElement('input', CLASS_NAME.inputColorCreate);   
     inputColorCreateSection.type = 'color';
 
-    const buttonCreateSection = utils.createElement('button', CLASS_NAME.buttonCreate, 'CREATE')
+    const buttonCreateSection = utils.createElement('button', CLASS_NAME.buttonCreate, 'CREATE') as HTMLButtonElement
     wrapperCreateSection.append(inputCreateSection,inputColorCreateSection,buttonCreateSection);
 
     const wrapperUpdateSection = utils.createElement('div', CLASS_NAME.wrapperSection);
     const inputUpdateSection = utils.createInputElement('input', CLASS_NAME.inputUpdate);
     const inputColorUpdateSection = utils.createInputElement('input', CLASS_NAME.inputColorUpdate);   
     inputColorUpdateSection.type = 'color';
-    const buttonUpdateSection = utils.createElement('button', CLASS_NAME.buttonUpdate, 'UPDATE')
+    const buttonUpdateSection = utils.createElement('button', CLASS_NAME.buttonUpdate, 'UPDATE') as HTMLButtonElement;
+    buttonUpdateSection.disabled = true
     wrapperUpdateSection.append(inputUpdateSection,inputColorUpdateSection, buttonUpdateSection);
 
     const wrapperButtonSection = utils.createElement('div', CLASS_NAME.wrapperSection);
-    const buttonRace = utils.createElement('button', CLASS_NAME.button, 'RACE');
+    const buttonRace = utils.createElement('button', CLASS_NAME.buttonRace, 'RACE') as HTMLButtonElement;
     const buttonReset = utils.createElement('button', CLASS_NAME.button, 'RESET');
-    const buttonGenerateCars = utils.createElement('button', CLASS_NAME.button, 'GENERATE CARS');
+    const buttonGenerateCars = utils.createElement('button', CLASS_NAME.buttonGenerate, 'GENERATE CARS') as HTMLButtonElement;
 
     wrapperButtonSection.append(buttonRace,buttonReset,buttonGenerateCars);
 
@@ -61,6 +64,7 @@ export function createControlBlock():HTMLElement{
         inputUpdateSection.removeAttribute('id')
         inputUpdateSection.value = '';
         inputColorUpdateSection.value = '';
+        buttonUpdateSection.disabled = true
     })
     buttonCreateSection.addEventListener('click',()=>{
         if(!inputCreateSection.value) {
@@ -77,9 +81,19 @@ export function createControlBlock():HTMLElement{
     })
     buttonRace.addEventListener('click',()=>{
         controller.race()
+        buttonRace.disabled = true
+        buttonCreateSection.disabled = true
+        buttonGenerateCars.disabled = true
+        const btnsCarBlock = Array.from(document.querySelectorAll('.btn-disable')) as HTMLButtonElement[];
+        btnsCarBlock.forEach(el=> el.disabled = true)
     })
     buttonReset.addEventListener('click', ()=>{
         controller.resetCars()
+        const btnsCarBlock = Array.from(document.querySelectorAll('.btn-disable')) as HTMLButtonElement[];
+        btnsCarBlock.forEach(el=> el.disabled = false)
+        buttonCreateSection.disabled = false
+        buttonGenerateCars.disabled = false
+        buttonRace.disabled = false
     })
     return wrapper;
 }

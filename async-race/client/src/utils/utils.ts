@@ -1,4 +1,4 @@
-export function createElement(elem:string, className?: string[], inner?:string, id?:number): HTMLElement | HTMLInputElement{
+export function createElement(elem:string, className?: string[], inner?:string, id?:number): HTMLElement | HTMLInputElement | HTMLButtonElement{
     const element = document.createElement(elem);
 
     if(className){

@@ -5,13 +5,15 @@ import * as controller from '../../../../controller/controller'
 
 const CLASS_NAME = {
     wrapperButtonPagination: ['wrapper-button-pagination'],
-    buttonPagination: ['button-pugination']
+    buttonPaginationPrev: ['button-pugination-prev', 'btn-disable'],
+    buttonPaginationNext: ['button-pugination-next', 'btn-disable'],
+
 }
 
 export function createButtonsPagination(){
     const buttonsPagination = utils.createElement('div', CLASS_NAME.wrapperButtonPagination);
-    const buttonPrev = utils.createElement('button', CLASS_NAME.buttonPagination, 'PREV');
-    const buttonNext = utils.createElement('button', CLASS_NAME.buttonPagination, 'NEXT');
+    const buttonPrev = utils.createElement('button', CLASS_NAME.buttonPaginationPrev, 'PREV');
+    const buttonNext = utils.createElement('button', CLASS_NAME.buttonPaginationNext, 'NEXT');
 
     
     buttonsPagination.append(buttonPrev, buttonNext);
@@ -19,21 +21,26 @@ export function createButtonsPagination(){
     
     let count = 1
     buttonNext.addEventListener('click', ()=>{
-        count++;
-        console.log(count)
-        controller.appendCars(count);
         const currentPage = document.querySelector('.current-cars-page');
-        currentPage!.textContent = `Page #${count}`
+        const totalCars = document.querySelector('.garage-cars-count')?.textContent!.split('(')[1]!;
+        const totalPages = Math.ceil(parseInt(totalCars, 10) / 10)
+        if(count >= totalPages){
+            return
+        }
+        count++;
+        controller.appendCars(count);
+
+        currentPage!.textContent = `Page ${count}`
     })
     buttonPrev.addEventListener('click', ()=>{
-        //const garageCountText = document.querySelector('.garage-cars-count')?.textContent;
-
-  /*       if(count > Math.ceil(garageCount / 10)  ) */
-        count--;
-        console.log(count)
-        controller.appendCars(count);
         const currentPage = document.querySelector('.current-cars-page');
-        currentPage!.textContent = `Page #${count}`
+        if(count <= 1){
+            return
+        }
+        count--;
+        controller.appendCars(count);
+
+        currentPage!.textContent = `Page ${count}`
     })
 
     return buttonsPagination;

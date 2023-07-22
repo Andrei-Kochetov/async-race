@@ -19,7 +19,7 @@ export function createMain(){
     const controlBlock = createControlBlock();
     
     const garageCarsCount = utils.createElement('div', CLASS_NAME.garageCarsCount, 'Garage (0)');
-    const currentCarsPage = utils.createElement('div', CLASS_NAME.currentCarsPage, 'Page # 1');
+    const currentCarsPage = utils.createElement('div', CLASS_NAME.currentCarsPage, 'Page 1');
 
     const carsBlock = utils.createElement('div', CLASS_NAME.carsWrapper)
 

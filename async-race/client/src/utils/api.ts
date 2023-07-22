@@ -7,7 +7,7 @@ const path:types.Path = {
   winners: '/winners',
 };
 
-export const getCars = async (page:number = 1, limit:number = 10):Promise<types.CarParam[]> => {
+export const getCars = async (page:number = 1, limit:number = 7):Promise<types.CarParam[]> => {
   // .headers.get('X-Total-Count')
   const response = await fetch(`${path.apiUrl}${path.garage}?_page=${page}&_limit=${limit}`);
   // console.log(response)
@@ -15,26 +15,29 @@ export const getCars = async (page:number = 1, limit:number = 10):Promise<types.
   return cars;
 };
 
-export const getWinners = async (page?:number, limit?:number, sort?:types.Sort, order?:types.Order):
-Promise<types.WinParam[]> => {
+export const getWinners = async (page:number = 1, limit:number = 10, sort?:types.Sort, order?:types.Order):Promise<types.WinParam[]> => {
   // .headers.get('X-Total-Count')
-  const response = await fetch(`${path.apiUrl}${path.winners}?_page=${page}&_limit=${limit}&_sort${sort}&_order${order}`);
+  const response = await fetch(`${path.apiUrl}${path.winners}?_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`);
   // console.log(response)
   const winners = await response.json();
   return winners;
 };
 
-export const getCar = async (id:number):Promise<types.CarParam[]> => {
+export const getCar = async (id:number):Promise<types.GetCar> => {
   const response = await fetch(`${path.apiUrl}${path.garage}?id=${id}`);
   const car = await response.json();
   return car;
 };
 export const getTotalCount = async ():Promise<string> => {
-    const response = await fetch(`${path.apiUrl}${path.garage}?_limit=10`);
+    const response = await fetch(`${path.apiUrl}${path.garage}?_limit=7`);
     const totalCount = await response.headers.get('X-Total-Count')!;
     return totalCount;
   };
- 
+  export const getTotalCountWinners = async ():Promise<string> => {
+    const response = await fetch(`${path.apiUrl}${path.winners}?_limit=10`);
+    const totalCount = await response.headers.get('X-Total-Count')!;
+    return totalCount;
+  };
 
 export const getWinner = async (id:number): Promise<types.WinParam[]> => {
   const response = await fetch(`${path.apiUrl}${path.winners}?id=${id}`);
@@ -125,29 +128,3 @@ export const driveCar = (id:number) => {
 
 };
 
-/* export const driveCar = async (id:number):Promise<types.DriveResponse> => {
-  const response = await fetch(`${path.apiUrl}${path.engine}?id=${id}&status=drive`, { method: 'PATCH' });
-  const driveResponse = await response.json();
-  return driveResponse;
-}; */
-
-/* export const startCar = async (id:number):
-Promise<types.StartStopResponse> => {
-  const response = await fetch(`${path.apiUrl}${path.engine}?id=${id}&status=started`, { method: 'PATCH' });
-  const startStopResponse = await response.json();
-  return startStopResponse;
-};
-export const stopCar = async (id:number):
-Promise<types.StartStopResponse> => {
-  const response = await fetch(`${path.apiUrl}${path.engine}?id=${id}&status=stopped`, { method: 'PATCH' });
-  const startStopResponse = await response.json();
-  return startStopResponse;
-};
-
-export const driveCar = async (id:number):Promise<types.DriveResponse> => {
-  const response = await fetch(`${path.apiUrl}${path.engine}?id=${id}&status=drive`, { method: 'PATCH' });
-  const driveResponse = await response.json();
-  return driveResponse;
-};
-
- */

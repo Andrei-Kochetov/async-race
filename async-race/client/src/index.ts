@@ -7,7 +7,16 @@ import * as controller from './controller/controller'
 
 createView();
 controller.appendCars();
+controller.appendWinners();
 
+/* controller.createWinner(1, 4, 12)
+controller.createWinner(1, 4, 12)
+controller.createWinner(1, 4, 12)
+controller.createWinner(1, 4, 12)
+controller.createWinner(1, 4, 12)
+controller.createWinner(1, 4, 12)
+controller.createWinner(1, 4, 12)
+controller.createWinner(1, 4, 12) */
 
 
 

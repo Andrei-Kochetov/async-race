@@ -11,12 +11,12 @@ const CLASS_NAME = {
 
 export function createWinners(){
     const winners = utils.createElement('div', CLASS_NAME.winners);
-    const winnersCount = utils.createElement('div', CLASS_NAME.winnersCount, 'Garage (0)');
-    const currentWinnersPage = utils.createElement('div', CLASS_NAME.currentWinnersPage, 'Page # 1');
+    const winnersCount = utils.createElement('div', CLASS_NAME.winnersCount, 'Winners (0)');
+    const currentWinnersPage = utils.createElement('div', CLASS_NAME.currentWinnersPage, 'Page 1');
     const winnersBoard = createWinnersBoard();
 
     const buttonsWinnersPagination = createButtonsWinnersPagination();
 
-    winners.append(winnersCount,currentWinnersPage, winnersBoard, buttonsWinnersPagination);
+    winners.append( buttonsWinnersPagination,winnersCount, currentWinnersPage, winnersBoard);
     return winners;
 }
