@@ -1,45 +1,43 @@
 import './carBlock.scss';
 import * as utils from '../../../../utils/utils';
 import * as api from '../../../../utils/api';
-import * as controller from '../../../../controller/controller'
-
+import * as controller from '../../../../controller/controller';
 
 const CLASS_NAME = {
-    carBlock: ['car-block'],
-    highSection: ['high-section-car-block'],
-    button: ['button-car-block' , 'btn-disable'],
-    buttonSelect: ['button-select', 'btn-disable'],
-    carName: ['car-name'],
-    carWinner: ['car-winner'],
-    middleSection: ['middle-car-block'],
-    buttonWrapper: ['button-wrapper', 'btn-disable'],
-    buttonStart: ['button-start', 'btn-disable'],
-    buttonStop: ['button-stop', 'btn-disable'],
-    leftWrapper: ['left-wrapper-car-block'],
-    rightWrapper: ['right-wrapper-car-block'],
-    carImg : ['car-img'],
-    flagImg : ['flag-img'],
-    road: ['road-car-block']
-}
+  carBlock: ['car-block'],
+  highSection: ['high-section-car-block'],
+  button: ['button-car-block', 'btn-disable'],
+  buttonSelect: ['button-select', 'btn-disable'],
+  carName: ['car-name'],
+  carWinner: ['car-winner'],
+  middleSection: ['middle-car-block'],
+  buttonWrapper: ['button-wrapper', 'btn-disable'],
+  buttonStart: ['button-start', 'btn-disable'],
+  buttonStop: ['button-stop'],
+  leftWrapper: ['left-wrapper-car-block'],
+  rightWrapper: ['right-wrapper-car-block'],
+  carImg: ['car-img'],
+  flagImg: ['flag-img'],
+  road: ['road-car-block'],
+};
 
+export function createCarBlock(name:string, color:string, id:number) {
+  const carBlock = utils.createElement('div', CLASS_NAME.carBlock, undefined, id);
 
-export function createCarBlock(name:string, color:string, id:number){
-    const carBlock = utils.createElement('div', CLASS_NAME.carBlock, undefined, id);
+  const highSection = utils.createElement('div', CLASS_NAME.highSection);
+  const buttonSelect = utils.createElement('button', CLASS_NAME.buttonSelect, 'SELECT') as HTMLButtonElement;
+  const buttonRemove = utils.createElement('button', CLASS_NAME.button, 'REMOVE') as HTMLButtonElement;
+  const carName = utils.createElement('div', CLASS_NAME.carName, name);
+  const carWinnerShow = utils.createElement('div', CLASS_NAME.carWinner);
 
-    const highSection = utils.createElement('div', CLASS_NAME.highSection);
-    const buttonSelect = utils.createElement('button', CLASS_NAME.buttonSelect, 'SELECT' )as HTMLButtonElement;
-    const buttonRemove = utils.createElement('button', CLASS_NAME.button, 'REMOVE' ) as HTMLButtonElement;
-    const carName = utils.createElement('div', CLASS_NAME.carName, name);
-    const carWinnerShow = utils.createElement('div', CLASS_NAME.carWinner);
-    
-    const middleSection = utils.createElement('div', CLASS_NAME.middleSection);
-    const leftWrapper = utils.createElement('div', CLASS_NAME.leftWrapper);
-    const buttonWrapper = utils.createElement('div', CLASS_NAME.buttonWrapper)as HTMLButtonElement
-    const buttonStart = utils.createElement('button', CLASS_NAME.buttonStart, 'A')as HTMLButtonElement;
-    const buttonStop = utils.createElement('button', CLASS_NAME.buttonStop, 'B')as HTMLButtonElement;
-    buttonStop.disabled = true
-   
-    const car = utils.createElement('div' ,CLASS_NAME.carImg, `
+  const middleSection = utils.createElement('div', CLASS_NAME.middleSection);
+  const leftWrapper = utils.createElement('div', CLASS_NAME.leftWrapper);
+  const buttonWrapper = utils.createElement('div', CLASS_NAME.buttonWrapper) as HTMLButtonElement;
+  const buttonStart = utils.createElement('button', CLASS_NAME.buttonStart, 'A') as HTMLButtonElement;
+  const buttonStop = utils.createElement('button', CLASS_NAME.buttonStop, 'B') as HTMLButtonElement;
+  buttonStop.disabled = true;
+
+  const car = utils.createElement('div', CLASS_NAME.carImg, `
     <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="80px" height="40px" viewBox="0 -100 1280.000000 640.000000" preserveAspectRatio="xMidYMid meet">
     <metadata>
       Created by potrace 1.15, written by Peter Selinger 2001-2017
@@ -140,81 +138,79 @@ export function createCarBlock(name:string, color:string, id:number){
   </svg>
 `);
 
-    const rightWrapper = utils.createElement('div', CLASS_NAME.rightWrapper);
-    const flag = utils.createImgElement(CLASS_NAME.flagImg, '../../../assets/images/flag.svg');
+  const rightWrapper = utils.createElement('div', CLASS_NAME.rightWrapper);
+  const flag = utils.createImgElement(CLASS_NAME.flagImg, '../../../assets/images/flag.svg');
 
-    const road = utils.createElement('div', CLASS_NAME.road);
- 
-    highSection.append(buttonSelect, buttonRemove, carName, carWinnerShow);
-    buttonWrapper.append(buttonStart, buttonStop);
-    leftWrapper.append(buttonWrapper, car);
-    rightWrapper.append(flag);
-    middleSection.append(leftWrapper, rightWrapper);
-    carBlock.append(highSection, middleSection, road);
+  const road = utils.createElement('div', CLASS_NAME.road);
 
-    const inputUpdate: HTMLInputElement = document.querySelector('.input-update')!;
-    const inputColorUpdate: HTMLInputElement = document.querySelector('.input-color-update')!;
-    const buttonCreate: HTMLInputElement = document.querySelector('.button-create')!;
-    const buttonUpdate: HTMLInputElement = document.querySelector('.button-update')!;
-    const buttonRace: HTMLInputElement = document.querySelector('.button-race')!;
-    const buttonGenerate: HTMLInputElement = document.querySelector('.button-generate')!;
-    const buttonPrev: HTMLInputElement = document.querySelector('.button-pugination-prev')!;
-    const buttonNext: HTMLInputElement = document.querySelector('.button-pugination-next')!;
-    
-    buttonSelect!.addEventListener('click', (): void=>{
-        buttonUpdate.disabled = false
-        const carSvgColor = car.querySelector('svg')?.querySelector('g')!.getAttribute('fill');
-        inputUpdate!.value = carName!.textContent!;
-        inputColorUpdate!.value = `${carSvgColor}`
-        car.setAttribute('color', `${carSvgColor}`);
-        inputUpdate.setAttribute('id', `${id}`);
-    })    
-    buttonRemove.addEventListener('click',()=>{
-        controller.deleteCar(id);
-    })
-    buttonStart.addEventListener('click', ()=>{
-        buttonRemove.disabled = true 
-        buttonStart.disabled = true 
-        buttonSelect.disabled = true 
-        buttonStop.disabled = false
-        buttonCreate.disabled = true 
-        buttonRace.disabled = true 
-        buttonGenerate.disabled = true 
-        buttonNext.disabled = true 
-        buttonPrev.disabled = true 
+  highSection.append(buttonSelect, buttonRemove, carName, carWinnerShow);
+  buttonWrapper.append(buttonStart, buttonStop);
+  leftWrapper.append(buttonWrapper, car);
+  rightWrapper.append(flag);
+  middleSection.append(leftWrapper, rightWrapper);
+  carBlock.append(highSection, middleSection, road);
 
+  const inputUpdate: HTMLInputElement = document.querySelector('.input-update')!;
+  const inputColorUpdate: HTMLInputElement = document.querySelector('.input-color-update')!;
+  const buttonCreate: HTMLInputElement = document.querySelector('.button-create')!;
+  const buttonUpdate: HTMLInputElement = document.querySelector('.button-update')!;
+  const buttonRace: HTMLInputElement = document.querySelector('.button-race')!;
+  const buttonGenerate: HTMLInputElement = document.querySelector('.button-generate')!;
+  const buttonPrev: HTMLInputElement = document.querySelector('.button-pugination-prev')!;
+  const buttonNext: HTMLInputElement = document.querySelector('.button-pugination-next')!;
 
-        const main:HTMLElement = document.querySelector('.main')!;
-        const mainWidth = main.offsetWidth;
-        const endX = mainWidth - 45 - 100;
-        controller.start(car,id,endX,)
-    })
-    buttonStop.addEventListener('click', ()=>{
-        buttonRemove.disabled = false 
-        buttonStart.disabled = false 
-        buttonSelect.disabled = false
-        buttonStop.disabled = true;
-        const btnsStop = Array.from(document.querySelectorAll('.button-stop')) as HTMLButtonElement[]
-        const isAllfalse = btnsStop.every(el => el.disabled == true)
-        console.log(isAllfalse)
-        if(isAllfalse){
-            buttonCreate.disabled = false 
-            buttonRace.disabled = false 
-            buttonGenerate.disabled = false 
-            buttonNext.disabled = false 
-            buttonPrev.disabled = false 
-    
-        }
+  buttonSelect!.addEventListener('click', (): void => {
+    buttonUpdate.disabled = false;
+    const carSvgColor = car.querySelector('svg')?.querySelector('g')!.getAttribute('fill');
+    inputUpdate!.value = carName!.textContent!;
+    inputColorUpdate!.value = `${carSvgColor}`;
+    car.setAttribute('color', `${carSvgColor}`);
+    inputUpdate.setAttribute('id', `${id}`);
+  });
+  buttonRemove.addEventListener('click', () => {
+    controller.deleteCar(id);
+  });
+  buttonStart.addEventListener('click', () => {
+    buttonRemove.disabled = true;
+    buttonStart.disabled = true;
+    buttonSelect.disabled = true;
+    buttonStop.disabled = false;
+    buttonCreate.disabled = true;
+    buttonRace.disabled = true;
+    buttonGenerate.disabled = true;
+    buttonNext.disabled = true;
+    buttonPrev.disabled = true;
 
-        //buttonCreate.disabled = false 
+    const main:HTMLElement = document.querySelector('.main')!;
+    const mainWidth = main.offsetWidth;
+    const endX = mainWidth - 45 - 100;
+    controller.start(car, id, endX);
+  });
+  buttonStop.addEventListener('click', () => {
+    controller.returnCar(car, id);
+    setTimeout(() => {
+      buttonRemove.disabled = false;
+      buttonStart.disabled = false;
+      buttonSelect.disabled = false;
+      buttonStop.disabled = true;
+      const btnsStop = Array.from(document.querySelectorAll('.button-stop')) as HTMLButtonElement[];
+      const isAllfalse = btnsStop.every((el) => el.disabled == true);
+      console.log(isAllfalse);
+      if (isAllfalse) {
+        buttonCreate.disabled = false;
+        buttonRace.disabled = false;
+        buttonGenerate.disabled = false;
+        buttonNext.disabled = false;
+        buttonPrev.disabled = false;
+      }
+    }, 1000);
 
-        controller.returnCar(car, id);
-    })
-    let ff = ()=> console.log('weew')
-    car.addEventListener('transitionend', ()=>{
-        console.log('dwedew')
-    })
+    // buttonCreate.disabled = false
+  });
+  const ff = () => console.log('weew');
+  car.addEventListener('transitionend', () => {
+    console.log('dwedew');
+  });
 
-    return carBlock
-
+  return carBlock;
 }

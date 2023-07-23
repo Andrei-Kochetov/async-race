@@ -2,22 +2,20 @@ export type Sort = 'id' | 'wins' | 'time';
 export type Order = 'ASC' | 'DESC';
 export type StartStop = 'started' | 'stopped';
 
-export type SortObj ={
-    sort: Sort,
-    order: Order,
-    page: number
-}
+export type SortObj = {
+  sort: Sort,
+  order: Order,
+  page: number
+};
 export type Path = {
   [key: string]: string;
 };
-
-
 
 export type CarParam = {
   color: string,
   name: string,
   id: number,
-  
+
 };
 export type GetCar = CarParam[];
 

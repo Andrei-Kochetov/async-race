@@ -29,15 +29,15 @@ export const getCar = async (id:number):Promise<types.GetCar> => {
   return car;
 };
 export const getTotalCount = async ():Promise<string> => {
-    const response = await fetch(`${path.apiUrl}${path.garage}?_limit=7`);
-    const totalCount = await response.headers.get('X-Total-Count')!;
-    return totalCount;
-  };
-  export const getTotalCountWinners = async ():Promise<string> => {
-    const response = await fetch(`${path.apiUrl}${path.winners}?_limit=10`);
-    const totalCount = await response.headers.get('X-Total-Count')!;
-    return totalCount;
-  };
+  const response = await fetch(`${path.apiUrl}${path.garage}?_limit=7`);
+  const totalCount = await response.headers.get('X-Total-Count')!;
+  return totalCount;
+};
+export const getTotalCountWinners = async ():Promise<string> => {
+  const response = await fetch(`${path.apiUrl}${path.winners}?_limit=10`);
+  const totalCount = await response.headers.get('X-Total-Count')!;
+  return totalCount;
+};
 
 export const getWinner = async (id:number): Promise<types.WinParam[]> => {
   const response = await fetch(`${path.apiUrl}${path.winners}?id=${id}`);
@@ -121,10 +121,8 @@ Promise<types.StartStopResponse> => {
 };
 
 export const driveCar = (id:number) => {
-  const response =  fetch(`http://127.0.0.1:3000/engine?id=${id}&status=drive`, { method: 'PATCH' })
-    .catch(()=>{
+  const response = fetch(`http://127.0.0.1:3000/engine?id=${id}&status=drive`, { method: 'PATCH' })
+    .catch(() => {
 
-    })
-
+    });
 };
-

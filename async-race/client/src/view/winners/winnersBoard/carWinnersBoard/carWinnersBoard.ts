@@ -1,23 +1,22 @@
 import './carWinnersBoard.scss';
 import * as utils from '../../../../utils/utils';
 
-
 const CLASS_NAME = {
-    carBlock: ['car-block-board'],
-    carBoardImg: ['car-board-img'],
-    carName: ['car-name-board'],
-    carWin: ['car-win-board'],
-    carBestTime: ['car-best-time-board'],
-    carNumber: ['car-name']
-}
+  carBlock: ['car-block-board'],
+  carBoardImg: ['car-board-img'],
+  carName: ['car-name-board'],
+  carWin: ['car-win-board'],
+  carBestTime: ['car-best-time-board'],
+  carNumber: ['car-name'],
+};
 
-export function createCarBlockWinnersBoard(num:number, id:number, name:string, win:number, bestTime:number, color:string){
-    const carBlockWinners = utils.createElement('tr', CLASS_NAME.carBlock);
-    carBlockWinners.setAttribute('id', `${id}`);
-    const nums = num;
-    const numberCarBlock = utils.createElement ('td', CLASS_NAME.carNumber, `${id}`);
-    //const color = '#' + Math.floor(Math.random()*16777215).toString(16);
-    const car = utils.createElement('td' ,CLASS_NAME.carBoardImg, `
+export function createCarBlockWinnersBoard(num:number, id:number, name:string, win:number, bestTime:number, color:string) {
+  const carBlockWinners = utils.createElement('tr', CLASS_NAME.carBlock);
+  carBlockWinners.setAttribute('id', `${id}`);
+  const nums = num;
+  const numberCarBlock = utils.createElement('td', CLASS_NAME.carNumber, `${id}`);
+  // const color = '#' + Math.floor(Math.random()*16777215).toString(16);
+  const car = utils.createElement('td', CLASS_NAME.carBoardImg, `
     <svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:svg="http://www.w3.org/2000/svg" id="svg2" viewBox="0 0 1052.4 474.3" version="1.1">
   <defs id="defs4">
     <linearGradient id="linearGradient8695">
@@ -159,13 +158,13 @@ export function createCarBlockWinnersBoard(num:number, id:number, name:string, w
   </metadata>
 </svg>
 `);
-    //const name = 'LADUSHKA'
-    const nameCar = utils.createElement('td', CLASS_NAME.carName, `${name}`);
-    //const win = 3
-    const winCar = utils.createElement('td', CLASS_NAME.carWin, `${win}`);
-    //const bestTime = 11.3
-    const bestTimeCar = utils.createElement('td', CLASS_NAME.carBestTime, `${bestTime}`);
-    carBlockWinners.append(numberCarBlock ,car, nameCar, winCar, bestTimeCar);
+    // const name = 'LADUSHKA'
+  const nameCar = utils.createElement('td', CLASS_NAME.carName, `${name}`);
+  // const win = 3
+  const winCar = utils.createElement('td', CLASS_NAME.carWin, `${win}`);
+  // const bestTime = 11.3
+  const bestTimeCar = utils.createElement('td', CLASS_NAME.carBestTime, `${bestTime}`);
+  carBlockWinners.append(numberCarBlock, car, nameCar, winCar, bestTimeCar);
 
-    return carBlockWinners
+  return carBlockWinners;
 }
