@@ -7,7 +7,7 @@ const CLASS_NAME = {
   buttonWinnersPagination: ['button-pugination'],
 };
 
-export function createButtonsWinnersPagination() {
+export default function createButtonsWinnersPagination() {
   const buttonsPagination = utils.createElement('div', CLASS_NAME.wrapperButtonWinnersPagination);
   const buttonPrev = utils.createElement('button', CLASS_NAME.buttonWinnersPagination, 'PREV');
   const buttonNext = utils.createElement('button', CLASS_NAME.buttonWinnersPagination, 'NEXT');
@@ -20,7 +20,7 @@ export function createButtonsWinnersPagination() {
     if (count >= totalPages) {
       return;
     }
-    count++;
+    count += 1;
     controller.appendWinners(count);
     currentPage!.textContent = `Page ${count}`;
   });
@@ -31,7 +31,7 @@ export function createButtonsWinnersPagination() {
     if (count <= 1) {
       return;
     }
-    count--;
+    count -= 1;
     controller.appendWinners(count);
     currentPage!.textContent = `Page ${count}`;
   });

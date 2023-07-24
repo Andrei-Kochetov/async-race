@@ -1,6 +1,5 @@
 import './carBlock.scss';
 import * as utils from '../../../../utils/utils';
-import * as api from '../../../../utils/api';
 import * as controller from '../../../../controller/controller';
 
 const CLASS_NAME = {
@@ -21,7 +20,7 @@ const CLASS_NAME = {
   road: ['road-car-block'],
 };
 
-export function createCarBlock(name:string, color:string, id:number) {
+export default function createCarBlock(name:string, color:string, id:number) {
   const carBlock = utils.createElement('div', CLASS_NAME.carBlock, undefined, id);
 
   const highSection = utils.createElement('div', CLASS_NAME.highSection);
@@ -194,7 +193,7 @@ export function createCarBlock(name:string, color:string, id:number) {
       buttonSelect.disabled = false;
       buttonStop.disabled = true;
       const btnsStop = Array.from(document.querySelectorAll('.button-stop')) as HTMLButtonElement[];
-      const isAllfalse = btnsStop.every((el) => el.disabled == true);
+      const isAllfalse = btnsStop.every((el) => el.disabled === true);
       if (isAllfalse) {
         buttonCreate.disabled = false;
         buttonRace.disabled = false;

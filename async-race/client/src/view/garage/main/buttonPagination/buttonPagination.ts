@@ -1,6 +1,5 @@
 import './buttonPagination.scss';
 import * as utils from '../../../../utils/utils';
-import * as api from '../../../../utils/utils';
 import * as controller from '../../../../controller/controller';
 
 const CLASS_NAME = {
@@ -10,7 +9,7 @@ const CLASS_NAME = {
 
 };
 
-export function createButtonsPagination() {
+export default function createButtonsPagination() {
   const buttonsPagination = utils.createElement('div', CLASS_NAME.wrapperButtonPagination);
   const buttonPrev = utils.createElement('button', CLASS_NAME.buttonPaginationPrev, 'PREV');
   const buttonNext = utils.createElement('button', CLASS_NAME.buttonPaginationNext, 'NEXT');
@@ -25,7 +24,7 @@ export function createButtonsPagination() {
     if (count >= totalPages) {
       return;
     }
-    count++;
+    count += 1;
     controller.appendCars(count);
 
     currentPage!.textContent = `Page ${count}`;
@@ -35,7 +34,7 @@ export function createButtonsPagination() {
     if (count <= 1) {
       return;
     }
-    count--;
+    count -= 1;
     controller.appendCars(count);
 
     currentPage!.textContent = `Page ${count}`;

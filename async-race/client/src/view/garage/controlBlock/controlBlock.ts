@@ -16,7 +16,7 @@ const CLASS_NAME = {
   buttonUpdate: ['btn', 'btn-section', 'button-update'],
 };
 
-export function createControlBlock():HTMLElement {
+export default function createControlBlock():HTMLElement {
   const wrapper = utils.createElement('div', CLASS_NAME.wrapperControlBlock);
 
   const wrapperCreateSection = utils.createElement('div', CLASS_NAME.wrapperSection);
@@ -118,7 +118,6 @@ export function createControlBlock():HTMLElement {
       buttonRace.disabled = false;
       buttonCreateSection.disabled = false;
       buttonGenerateCars.disabled = false;
-      const btnsCarBlock = Array.from(document.querySelectorAll('.btn-disable')) as HTMLButtonElement[];
       btnsCarBlock.forEach((el) => el.disabled = false);
     }, 6000);
   });

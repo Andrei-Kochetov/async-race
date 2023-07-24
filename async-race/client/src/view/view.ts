@@ -1,7 +1,7 @@
 import './view.scss';
 import * as utils from '../utils/utils';
-import { createGarage } from './garage/garage';
-import { createWinners } from './winners/winners';
+import createGarage from './garage/garage';
+import createWinners from './winners/winners';
 
 const CLASS_NAME = {
   container: ['container'],
@@ -10,7 +10,7 @@ const CLASS_NAME = {
   content: ['content'],
 };
 
-export function createView() {
+export default function createView() {
   const container = utils.createElement('div', CLASS_NAME.container);
   const buttonGarage = utils.createElement('button', CLASS_NAME.buttonGarage, 'TO GARAGE') as HTMLButtonElement;
   const buttonWinners = utils.createElement('button', CLASS_NAME.buttonWinners, 'TO WINNERS') as HTMLButtonElement;

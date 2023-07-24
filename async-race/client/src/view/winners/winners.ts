@@ -1,7 +1,7 @@
 import './winners.scss';
 import * as utils from '../../utils/utils';
-import { createButtonsWinnersPagination } from './buttonWinnersPagination/buttonWinnersPagination';
-import { createWinnersBoard } from './winnersBoard/winnersBoard';
+import createButtonsWinnersPagination from './buttonWinnersPagination/buttonWinnersPagination';
+import createWinnersBoard from './winnersBoard/winnersBoard';
 
 const CLASS_NAME = {
   winners: ['winners'],
@@ -9,7 +9,7 @@ const CLASS_NAME = {
   currentWinnersPage: ['current-winners-page'],
 };
 
-export function createWinners() {
+export default function createWinners() {
   const winners = utils.createElement('div', CLASS_NAME.winners);
   const winnersCount = utils.createElement('div', CLASS_NAME.winnersCount, 'Winners (0)');
   const currentWinnersPage = utils.createElement('div', CLASS_NAME.currentWinnersPage, 'Page 1');

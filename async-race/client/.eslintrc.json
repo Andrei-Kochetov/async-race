@@ -11,6 +11,11 @@
       "@typescript-eslint"
   ],
   "rules": {
-    "@typescript-eslint/no-explicit-any": "error"
+    "@typescript-eslint/no-explicit-any": "error",
+    "no-useless-concat": "off",
+    "no-return-assign": "off",
+    "no-await-in-loop": "off",
+    "import/no-cycle": "off",
+    "no-param-reassign": "off"
   }
 }

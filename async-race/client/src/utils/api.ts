@@ -15,10 +15,13 @@ export const getCars = async (page:number = 1, limit:number = 7):Promise<types.C
   return cars;
 };
 
-export const getWinners = async (page:number = 1, limit:number = 10, sort?:types.Sort, order?:types.Order):Promise<types.WinParam[]> => {
-  // .headers.get('X-Total-Count')
+export const getWinners = async (
+  page:number = 1,
+  limit:number = 10,
+  sort?:types.Sort,
+  order?:types.Order,
+):Promise<types.WinParam[]> => {
   const response = await fetch(`${path.apiUrl}${path.winners}?_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`);
-  // console.log(response)
   const winners = await response.json();
   return winners;
 };
@@ -121,8 +124,5 @@ Promise<types.StartStopResponse> => {
 };
 
 export const driveCar = (id:number) => {
-  const response = fetch(`http://127.0.0.1:3000/engine?id=${id}&status=drive`, { method: 'PATCH' })
-    .catch(() => {
-
-    });
+  fetch(`http://127.0.0.1:3000/engine?id=${id}&status=drive`, { method: 'PATCH' });
 };

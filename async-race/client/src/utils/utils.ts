@@ -1,8 +1,13 @@
-export function createElement(elem:string, className?: string[], inner?:string, id?:number): HTMLElement | HTMLInputElement | HTMLButtonElement {
+export function createElement(
+  elem:string,
+  className?: string[],
+  inner?:string,
+  id?:number,
+): HTMLElement | HTMLInputElement | HTMLButtonElement {
   const element = document.createElement(elem);
 
   if (className) {
-    for (let i = 0; i < className.length; i++) {
+    for (let i = 0; i < className.length; i += 1) {
       element.classList.add(className[i]);
     }
   }
@@ -17,11 +22,16 @@ export function createElement(elem:string, className?: string[], inner?:string, 
   return element;
 }
 
-export function createInputElement(elem:string, className?: string[], inner?:string, id?:number):HTMLInputElement {
+export function createInputElement(
+  elem:string,
+  className?: string[],
+  inner?:string,
+  id?:number,
+):HTMLInputElement {
   const element = document.createElement(elem);
 
   if (className) {
-    for (let i = 0; i < className.length; i++) {
+    for (let i = 0; i < className.length; i += 1) {
       element.classList.add(className[i]);
     }
   }
@@ -39,7 +49,7 @@ export function createInputElement(elem:string, className?: string[], inner?:str
 export function createImgElement(className: string[], src: string) {
   const element = document.createElement('img');
 
-  for (let i = 0; i < className.length; i++) {
+  for (let i = 0; i < className.length; i += 1) {
     element.classList.add(className[i]);
   }
 

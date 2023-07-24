@@ -1,6 +1,5 @@
 import './winnersBoard.scss';
 import * as utils from '../../../utils/utils';
-import { createCarBlockWinnersBoard } from './carWinnersBoard/carWinnersBoard';
 import * as controller from '../../../controller/controller';
 
 const CLASS_NAME = {
@@ -12,7 +11,7 @@ const CLASS_NAME = {
   tableBoard: ['table-board'],
 };
 
-export function createWinnersBoard() {
+export default function createWinnersBoard() {
   const wrapperWinnersBoard = utils.createElement('div', CLASS_NAME.wrapperBoard);
   const titlesBoard = utils.createElement('div', CLASS_NAME.titlesBoard);
   const titleNumber = utils.createElement('div', CLASS_NAME.titleNumber, '#');

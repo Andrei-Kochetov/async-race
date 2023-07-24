@@ -7,15 +7,19 @@ const CLASS_NAME = {
   carName: ['car-name-board'],
   carWin: ['car-win-board'],
   carBestTime: ['car-best-time-board'],
-  carNumber: ['car-name-winner'],
+  carNumber: ['car-name'],
 };
 
-export function createCarBlockWinnersBoard(num:number, id:number, name:string, win:number, bestTime:number, color:string) {
+export default function createCarBlockWinnersBoard(
+  id:number,
+  name:string,
+  win:number,
+  bestTime:number,
+  color:string,
+) {
   const carBlockWinners = utils.createElement('tr', CLASS_NAME.carBlock);
   carBlockWinners.setAttribute('id', `${id}`);
-  const nums = num;
   const numberCarBlock = utils.createElement('td', CLASS_NAME.carNumber, `${id}`);
-  // const color = '#' + Math.floor(Math.random()*16777215).toString(16);
   const car = utils.createElement('td', CLASS_NAME.carBoardImg, `
     <svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:svg="http://www.w3.org/2000/svg" id="svg2" viewBox="0 0 1052.4 474.3" version="1.1">
   <defs id="defs4">
