@@ -139,7 +139,7 @@ export function createCarBlock(name:string, color:string, id:number) {
 `);
 
   const rightWrapper = utils.createElement('div', CLASS_NAME.rightWrapper);
-  const flag = utils.createImgElement(CLASS_NAME.flagImg, '../../../assets/images/flag.svg');
+  const flag = utils.createImgElement(CLASS_NAME.flagImg, './assets/images/flag.svg');
 
   const road = utils.createElement('div', CLASS_NAME.road);
 
@@ -202,8 +202,7 @@ export function createCarBlock(name:string, color:string, id:number) {
         buttonNext.disabled = false;
         buttonPrev.disabled = false;
       }
-    }, 1000);
-
+    }, 2000);
   });
   return carBlock;
 }

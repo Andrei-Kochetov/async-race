@@ -227,7 +227,6 @@ export async function race() {
   const mainWidth = main.offsetWidth;
   const endX = mainWidth - 45 - 100;
 
-
   const arrPromiseSpeeds = Array.from(carsCurrPage)!.map((el) => {
     const id = Number(el.getAttribute('id'))!;
     return api.startCar(id);

@@ -21,7 +21,7 @@ export function createControlBlock():HTMLElement {
 
   const wrapperCreateSection = utils.createElement('div', CLASS_NAME.wrapperSection);
   const inputCreateSection = utils.createElement('input', CLASS_NAME.inputCreate) as HTMLInputElement;
-  inputCreateSection.placeholder = 'Name car'
+  inputCreateSection.placeholder = ' Name car';
   const inputColorCreateSection = utils.createInputElement('input', CLASS_NAME.inputColorCreate);
   inputColorCreateSection.type = 'color';
 
@@ -30,7 +30,7 @@ export function createControlBlock():HTMLElement {
 
   const wrapperUpdateSection = utils.createElement('div', CLASS_NAME.wrapperSection);
   const inputUpdateSection = utils.createInputElement('input', CLASS_NAME.inputUpdate);
-  inputUpdateSection.placeholder = 'Set new name'
+  inputUpdateSection.placeholder = ' Set new name';
   const inputColorUpdateSection = utils.createInputElement('input', CLASS_NAME.inputColorUpdate);
   inputColorUpdateSection.type = 'color';
   const buttonUpdateSection = utils.createElement('button', CLASS_NAME.buttonUpdate, 'UPDATE') as HTMLButtonElement;
@@ -80,15 +80,15 @@ export function createControlBlock():HTMLElement {
   });
   buttonRace.addEventListener('click', () => {
     controller.race();
-    buttonReset.disabled = true
+    buttonReset.disabled = true;
     buttonRace.disabled = true;
     buttonCreateSection.disabled = true;
     buttonGenerateCars.disabled = true;
     const btnsCarBlock = Array.from(document.querySelectorAll('.btn-disable')) as HTMLButtonElement[];
     btnsCarBlock.forEach((el) => el.disabled = true);
     setTimeout(() => {
-        buttonReset.disabled = false
-      }, 6000);
+      buttonReset.disabled = false;
+    }, 6000);
   });
   buttonReset.addEventListener('click', () => {
     controller.resetCars();
@@ -108,19 +108,19 @@ export function createControlBlock():HTMLElement {
     }, 2500);
   });
 
-  buttonGenerateCars.addEventListener('click',()=>{
+  buttonGenerateCars.addEventListener('click', () => {
     buttonRace.disabled = true;
     buttonCreateSection.disabled = true;
     buttonGenerateCars.disabled = true;
     const btnsCarBlock = Array.from(document.querySelectorAll('.btn-disable')) as HTMLButtonElement[];
     btnsCarBlock.forEach((el) => el.disabled = true);
-    setTimeout(()=>{
-        buttonRace.disabled = false;
-        buttonCreateSection.disabled = false;
-        buttonGenerateCars.disabled = false;
-        const btnsCarBlock = Array.from(document.querySelectorAll('.btn-disable')) as HTMLButtonElement[];
-        btnsCarBlock.forEach((el) => el.disabled = false);
-    },6000)
-  })
+    setTimeout(() => {
+      buttonRace.disabled = false;
+      buttonCreateSection.disabled = false;
+      buttonGenerateCars.disabled = false;
+      const btnsCarBlock = Array.from(document.querySelectorAll('.btn-disable')) as HTMLButtonElement[];
+      btnsCarBlock.forEach((el) => el.disabled = false);
+    }, 6000);
+  });
   return wrapper;
 }
