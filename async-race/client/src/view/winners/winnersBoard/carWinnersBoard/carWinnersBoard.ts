@@ -7,7 +7,7 @@ const CLASS_NAME = {
   carName: ['car-name-board'],
   carWin: ['car-win-board'],
   carBestTime: ['car-best-time-board'],
-  carNumber: ['car-name'],
+  carNumber: ['car-name-winner'],
 };
 
 export function createCarBlockWinnersBoard(num:number, id:number, name:string, win:number, bestTime:number, color:string) {

@@ -1,5 +1,5 @@
 .car-block{
-    margin: 5px 0;
+    margin-bottom: 15px;
 }
 .road-car-block{
     width: 100%;
@@ -14,6 +14,7 @@
 
 .high-section-car-block{
     display: flex;
+    column-gap: 10px;
     margin-bottom: 10px;
    
 }
@@ -24,6 +25,7 @@
 }
 .button-wrapper{
     display: flex;
+    column-gap: 5px;
     align-items: flex-start;
 }
 
@@ -39,9 +41,15 @@
 
 .car-name{
     margin-left: 10px;
+    font-size: 18px;
+
+    color: rgb(23, 107, 163);
 }
 .car-winner{
-    padding-left: 100px;
+    padding-left: 10%;
+    font-size: 18px;
+    font-weight: 700;
+    color: rgb(23, 107, 163);
 }
 .button-select{
     height: 25px;

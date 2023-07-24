@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 const path = require('path');
 
@@ -30,6 +31,9 @@ module.exports = {
     extensions: ['.ts', '.js'],
   },
   plugins: [
+    new FaviconsWebpackPlugin(
+      path.resolve(__dirname, './src/assets/images/logo.png')
+      ) ,
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src', 'index.html'),
       filename: 'index.html',
@@ -44,7 +48,8 @@ module.exports = {
       }),
     new MiniCssExtractPlugin({
         filename: '[name].css',
-    })
+    }),
+
   ],
   devServer: {
       watchFiles: path.join(__dirname, 'src'),

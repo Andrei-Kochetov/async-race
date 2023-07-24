@@ -25,7 +25,7 @@ export async function appendCars(page ?: number) {
   }
   appendTotalCars();
 }
-const flagAppendWinners = true;
+
 export async function appendWinners(page: number = currentSort.page, sort: types.Sort = currentSort.sort, order: types.Order = currentSort.order) {
   currentSort.page = page;
   const tableBoard = document.querySelector('.table-board');
@@ -40,7 +40,6 @@ export async function appendWinners(page: number = currentSort.page, sort: types
   }
 
   for (let i = 0; i < getWinners.length; i++) {
-    // console.log(getCars[i])
     const { time, id, wins } = getWinners[i];
     const carArr = await api.getCar(id);
     const { color, name } = carArr[0];
@@ -151,17 +150,11 @@ export async function appendTotalWinners() {
   const garageCount = document.querySelector('.winners-count');
   const totalCount = await api.getTotalCountWinners();
   garageCount!.textContent = `Winners (${totalCount})`;
-/*     const currentPage = document.querySelector('.current-winners-page');
-    const totalPages = Math.ceil(+totalCount / 10);
-    currentPage!.textContent = `Page  / ${totalPages}` */
 }
 
 export async function updateCar(id:number, name:string, color:string) {
   api.updateCar(id, name, color);
 }
-/* export async function deleteWinner (id:number){
-    api.deleteWinner(id)
-} */
 
 export async function deleteCar(id:number) {
   await api.deleteCar(id);
@@ -223,9 +216,17 @@ export async function start(carDiv:HTMLElement, id:number, endPoint:number, spee
 
 export async function race() {
   const carsCurrPage = document.querySelectorAll('.car-block')!;
+
+  carsCurrPage.forEach((el) => {
+    el.querySelector('.car-winner')!.textContent = '';
+    const car = el.querySelector('.car-img') as HTMLElement;
+    const id = Number(el.getAttribute('id'))!;
+  });
+
   const main:HTMLElement = document.querySelector('.main')!;
   const mainWidth = main.offsetWidth;
   const endX = mainWidth - 45 - 100;
+
 
   const arrPromiseSpeeds = Array.from(carsCurrPage)!.map((el) => {
     const id = Number(el.getAttribute('id'))!;
@@ -242,7 +243,7 @@ export async function race() {
     idArr.push(id);
     start(car, id, endX, speedsArr[i], true);
   });
-  // console.log(carsCurrPage)
+
   const arrPromiseDrive = Array.from(carsCurrPage).map((el) => {
     const id = Number(el.getAttribute('id'))!;
     return fetch(`http://127.0.0.1:3000/engine?id=${id}&status=drive`, { method: 'PATCH' }).then((res) => {
@@ -258,7 +259,6 @@ export async function race() {
   });
 
   const firstCarResponse = await Promise.any(arrPromiseDrive);
-  console.log(firstCarResponse);
   const firstCarId: number = parseInt(firstCarResponse.url.split('id=')[1], 10);
 
   const firstCar = Array.from(carsCurrPage).filter((el) => +el.getAttribute('id')! == firstCarId)[0];
@@ -272,7 +272,7 @@ export async function race() {
 export async function resetCars() {
   const carsCurrPage = document.querySelectorAll('.car-block')!;
   carsCurrPage.forEach((el) => {
-    const carWinnerShow = el.querySelector('.car-winner')!.textContent = '';
+    el.querySelector('.car-winner')!.textContent = '';
     const car = el.querySelector('.car-img') as HTMLElement;
     const id = Number(el.getAttribute('id'))!;
     returnCar(car, id);

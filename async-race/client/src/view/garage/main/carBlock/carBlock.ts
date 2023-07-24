@@ -195,7 +195,6 @@ export function createCarBlock(name:string, color:string, id:number) {
       buttonStop.disabled = true;
       const btnsStop = Array.from(document.querySelectorAll('.button-stop')) as HTMLButtonElement[];
       const isAllfalse = btnsStop.every((el) => el.disabled == true);
-      console.log(isAllfalse);
       if (isAllfalse) {
         buttonCreate.disabled = false;
         buttonRace.disabled = false;
@@ -205,12 +204,6 @@ export function createCarBlock(name:string, color:string, id:number) {
       }
     }, 1000);
 
-    // buttonCreate.disabled = false
   });
-  const ff = () => console.log('weew');
-  car.addEventListener('transitionend', () => {
-    console.log('dwedew');
-  });
-
   return carBlock;
 }

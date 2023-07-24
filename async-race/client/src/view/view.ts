@@ -5,16 +5,24 @@ import { createWinners } from './winners/winners';
 
 const CLASS_NAME = {
   container: ['container'],
-  buttonGarage: ['btn'],
-  buttonWinners: ['btn'],
+  buttonGarage: ['btn-view', 'btn'],
+  buttonWinners: ['btn-view','btn'],
   content: ['content'],
 };
 
 export function createView() {
   const container = utils.createElement('div', CLASS_NAME.container);
-  const buttonGarage = utils.createElement('button', CLASS_NAME.buttonGarage, 'TO GARAGE');
-  const buttonWinners = utils.createElement('button', CLASS_NAME.buttonWinners, 'TO WINNERS');
+  const buttonGarage = utils.createElement('button', CLASS_NAME.buttonGarage, 'TO GARAGE') as HTMLButtonElement;
+  const buttonWinners = utils.createElement('button', CLASS_NAME.buttonWinners, 'TO WINNERS') as HTMLButtonElement;
   const content = utils.createElement('div', CLASS_NAME.content);
+  buttonGarage.addEventListener('click',()=>{
+    buttonGarage.disabled = true;
+    buttonWinners.disabled = false;
+  })
+  buttonWinners.addEventListener('click',()=>{
+    buttonGarage.disabled = false;
+    buttonWinners.disabled = true;
+  })
 
   const garage = createGarage();
   const winners = createWinners();
