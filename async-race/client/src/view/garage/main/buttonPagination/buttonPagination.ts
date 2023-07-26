@@ -20,7 +20,7 @@ export default function createButtonsPagination() {
   buttonNext.addEventListener('click', () => {
     const currentPage = document.querySelector('.current-cars-page');
     const totalCars = document.querySelector('.garage-cars-count')?.textContent!.split('(')[1]!;
-    const totalPages = Math.ceil(parseInt(totalCars, 10) / 10);
+    const totalPages = Math.ceil(parseInt(totalCars, 10) / 7);
     if (count >= totalPages) {
       return;
     }

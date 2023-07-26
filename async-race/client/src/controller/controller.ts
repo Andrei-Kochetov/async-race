@@ -25,10 +25,13 @@ export async function appendTotalWinners() {
   garageCount!.textContent = `Winners (${totalCount})`;
 }
 
-export async function appendCars(page ?: number) {
+let currentPageGarage: number;
+export async function appendCars(page : number = 1) {
+  currentPageGarage = page;
+  currentPageGarage = page;
   const carsWrapper = document.querySelector('.cars-wrapper');
   carsWrapper!.innerHTML = '';
-  const getCars = await api.getCars(page);
+  const getCars = await api.getCars(currentPageGarage);
   for (let i = 0; i < getCars.length; i += 1) {
     const { name, color, id } = getCars[i];
     const car = createCarBlock(name, color, id);
@@ -105,7 +108,7 @@ export async function sortWinnersById() {
 
 export async function createCar(name:string, color:string) {
   await api.createCar(name, color);
-  await appendCars();
+  await appendCars(currentPageGarage);
   await appendTotalCars();
 }
 
@@ -152,7 +155,7 @@ export async function create100Car() {
   for (let i = 0; i < 100; i += 1) {
     await api.createCar(getRandomName(), generateColor());
   }
-  await appendCars();
+  await appendCars(currentPageGarage);
   await appendTotalCars();
 }
 
@@ -162,7 +165,7 @@ export async function updateCar(id:number, name:string, color:string) {
 
 export async function deleteCar(id:number) {
   await api.deleteCar(id);
-  await appendCars();
+  await appendCars(currentPageGarage);
   await api.deleteWinner(id);
   await appendWinners();
 }

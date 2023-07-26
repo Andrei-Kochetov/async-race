@@ -73,7 +73,7 @@ export default function createControlBlock():HTMLElement {
     const inputColorCreateValue = inputColorCreateSection.value;
     controller.createCar(inputCreateValue, inputColorCreateValue);
     inputCreateSection.value = '';
-    inputColorCreateSection.value = '';
+    inputColorCreateSection.value = '#000000';
   });
   buttonGenerateCars.addEventListener('click', () => {
     controller.create100Car();
